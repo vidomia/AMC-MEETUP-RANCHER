@@ -1,4 +1,3 @@
-version: '2'
 volumes:
   redis-module:
     driver: rancher-nfs
@@ -6,20 +5,19 @@ volumes:
   redis-data:
     driver: rancher-nfs
     per_container: true
-services:
-  redis-vidomia-nfs-master:
-    image: comodal/alpine-redis:unstable
-    command: ['--port', '6379', '--protected-mode', 'no', 'logfile', 'redis-6379.log']
-    volumes:
-      - redis-module: /redis/modules
-      - redis-data: /redis/data
-    ports:
-      - 6379:6379/tcp
-  redis-vidomia-nfs-slave:
-    image: comodal/alpine-redis:unstable
-    command: ['--port', '6379', '--protected-mode', 'no', 'logfile', 'redis-6379.log', '--slave-of','redis-vidomia-nfs-master 6379']
-    volumes:
-      - redis-module: /redis/modules
-      - redis-data: /redis/data
-    ports:
-      - 6380:6380/tcp
+redis-vidomia-nfs-master:
+  image: comodal/alpine-redis:unstable
+  command: ['--port', '6379', '--protected-mode', 'no', 'logfile', 'redis-6379.log']
+  volumes:
+    - redis-module: /redis/modules
+    - redis-data: /redis/data
+  ports:
+    - 6379:6379/tcp
+redis-vidomia-nfs-slave:
+  image: comodal/alpine-redis:unstable
+  command: ['--port', '6379', '--protected-mode', 'no', 'logfile', 'redis-6379.log', '--slave-of','redis-vidomia-nfs-master 6379']
+  volumes:
+    - redis-module: /redis/modules
+    - redis-data: /redis/data
+  ports:
+    - 6380:6380/tcp
