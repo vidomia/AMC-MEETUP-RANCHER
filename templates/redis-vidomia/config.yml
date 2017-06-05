@@ -1,7 +1,7 @@
-name: redisdvidomianfs
+name: redi
 description: |
   Coool
-version: 0
-category: ci
+version: 1
+category: Database
 maintainer: "Julien BIJOUX <julien@vidomia.biz>"
 license: BSD
