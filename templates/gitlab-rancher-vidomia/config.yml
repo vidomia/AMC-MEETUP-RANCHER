@@ -1,0 +1,7 @@
+name: gitlab-rancher-vidomia
+description: |
+  Coool
+version: 1
+category: ci
+maintainer: "Julien BIJOUX <julien@vidomia.biz>"
+license: BSD
