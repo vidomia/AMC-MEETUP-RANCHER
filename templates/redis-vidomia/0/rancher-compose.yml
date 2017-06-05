@@ -1,7 +1,7 @@
 version: '2'
 catalog:
   name: "redis-vidomia"
-  version: "1.0-redis-vidomia"
+  version: 0
   description: "Redis master slave config"
   minimum_rancher_version: v1.5.0
   questions:
