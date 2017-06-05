@@ -5,8 +5,8 @@
   uuid: redis-vidomia-1
 redis-vidomia-nfs-master:
   retain_ip: true
-   scale: 1
-   start_on_create: true
+  scale: 1
+  start_on_create: true
 redis-vidomia-nfs-slave:
   retain-ip: false
   scale: 3
