@@ -14,7 +14,7 @@ services:
       - /home/rancher/encrerie/encrerie/nginx/conf/app.conf:/etc/nginx/app.conf
       - /home/rancher/encrerie/encrerie/nginx/logs/:/var/log/nginx/
     environment:
-      - MY_DOMAIN_NAME=lencrerie.fr
+      - MY_DOMAIN_NAME=www.lencrerie.fr
       - GOOGLE_UA=UA-112983495-1
     mem_limit: 1g
     cpu_shares: 128
