@@ -6,8 +6,6 @@ services:
       - /home/rancher/encrerie/encrerie/encrerie:/app
     mem_limit: 2g
     cpu_shares: 128
-    ports:
-      - '127.0.0.1:8080:8080'
   encrerie-front:
     image: nginx:alpine
     command: sh /run.sh
@@ -22,7 +20,5 @@ services:
     cpu_shares: 128
     depends_on:
       - encrerie-backend
-    ports:
-      - '80:80'
     links:
       - "encrerie-backend:encrerie-backend"
