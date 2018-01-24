@@ -1,10 +1,9 @@
 version: '2'
 services:
   encrerie-backend:
-    build: /.
     image: encrerie:0.02
     volumes:
-      - ./encrerie:/app
+      - /home/rancher/encrerie/encrerie:/app
     mem_limit: 2g
     cpu_shares: 128
     ports:
@@ -13,9 +12,9 @@ services:
     image: nginx:alpine
     command: sh /run.sh
     volumes:
-      - ./nginx/run.sh:/run.sh
-      - ./nginx/conf/app.conf:/etc/nginx/app.conf
-      - ./nginx/logs/:/var/log/nginx/
+      - /home/rancher/encrerie/nginx/run.sh:/run.sh
+      - /home/rancher/encrerie/nginx/conf/app.conf:/etc/nginx/app.conf
+      - /home/rancher/encrerie/nginx/logs/:/var/log/nginx/
     environment:
       - MY_DOMAIN_NAME=lencrerie.fr
       - GOOGLE_UA=UA-112983495-1
