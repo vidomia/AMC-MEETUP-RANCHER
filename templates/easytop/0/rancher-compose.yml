@@ -1,7 +1,7 @@
 .catalog:
   name:  easytop
   version: 0
-  description: Wagtail vidomia encrerie
+  description: easytop
   questions:
     - variable: DOMAIN_NAME
       label: nom de domaine
