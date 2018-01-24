@@ -1,0 +1,44 @@
+version: '2'
+services:
+  shopping:
+    image: ezt-merchant-rest:latest
+    volumes:
+      - ${VOLUME_PREFIX}/googleshopping:/app
+    ports:
+      - '127.0.0.1:5000:5000'
+      - '127.0.0.1:3400:3400'
+    command: sh /run.sh
+  front:
+    image: nginx:alpine
+    command: sh /run.sh
+    volumes:
+      - ${VOLUME_PREFIX}/nginx/run.sh:/run.sh
+      - ${VOLUME_PREFIX}/nginx/conf/app.conf:/etc/nginx/app.conf
+      - ${VOLUME_PREFIX}/nginx/logs/:/var/log/nginx/
+      - ${VOLUME_PREFIX}/cms/backend:/app
+    environment:
+      - MY_DOMAIN_NAME=${DOMAIN_NAME}
+      - GOOGLE_UA=${GOOGLE_UA}
+    mem_limit: 1g
+    cpu_shares: 128
+    depends_on:
+      - backend
+    ports:
+      - '80:80'
+    expose:
+      - "80"
+    links:
+      - "backend:backend"
+  redis:
+    image: 'redis:3.2.0'
+  backend:
+    image: ezt-cms:latest
+    command: sh /run.sh
+    volumes:
+      - ${VOLUME_PREFIX}/cms/backend:/app
+    depends_on:
+      - shopping
+      - redis
+    links:
+      - "shopping:shopping"
+      - "redis:redis"
