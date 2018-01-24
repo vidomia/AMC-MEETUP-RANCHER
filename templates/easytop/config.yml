@@ -2,6 +2,6 @@ name: easytop
 description: |
         Stack easytop 
 version: 0
-category: server
+category: cms
 maintainer: julien@vidomia.biz<julien BIJOUX>
 license: BSD
