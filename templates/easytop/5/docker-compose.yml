@@ -5,8 +5,6 @@ services:
     volumes:
       - ${VOLUME_PREFIX}/googleshopping:/app
     command: sh /run.sh
-    labels:
-      - "io.rancher.scheduler.affinity:container_label_soft: io.rancher.stack.name=${stack_name}"
   front:
     image: nginx:alpine
     command: sh /run.sh
@@ -28,12 +26,9 @@ services:
       - "traefik.enable=true"
       - "traefik.port=80"
       - "traefik.frontend.rule=Host:${DOMAIN_NAME}"
-      - "io.rancher.container.pull_image=always"
-      - "io.rancher.scheduler.affinity:container_label_soft: io.rancher.stack.name=${stack_name}"      
+      -  "io.rancher.container.pull_image=always"
   redis:
     image: 'redis:3.2.0'
-    labels:
-      - "io.rancher.scheduler.affinity:container_label_soft: io.rancher.stack.name=${stack_name}"
   backend:
     image: registry.containers.ovh.net/vidomia/ezt-cms
     command: sh /run.sh
@@ -49,5 +44,4 @@ services:
       - "traefik.enable=true"
       - "traefik.port=8080"
       - "traefik.frontend.rule=Host:admin.${DOMAIN_NAME}"
-      - "io.rancher.container.pull_image=always"
-      - "io.rancher.scheduler.affinity:container_label_soft: io.rancher.stack.name=${stack_name}"
+      -  "io.rancher.container.pull_image=always"
