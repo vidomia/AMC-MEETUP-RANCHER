@@ -1,6 +1,6 @@
 .catalog:
   name:  encrerie
-  version: 0
+  version: 3
   description: Wagtail vidomia encrerie
   encrerie-backend:
     retain_ip: true
