@@ -1,7 +1,7 @@
 version: '2'
 services:
   shopping:
-    image: registry.containers.ovh.net/vidomia/ezt-merchant-rest:0.2.5-23-g2886629
+    image: registry.containers.ovh.net/vidomia/ezt-merchant-rest:0.2.5-24-gf98af38
     volumes:
       - ${VOLUME_PREFIX}/googleshopping/private:/root/shopping-samples/content/
     command: sh /run.sh
@@ -33,7 +33,7 @@ services:
       -  "io.rancher.container.pull_image=always"
       - "io.rancher.scheduler.affinity:container_label_soft: io.rancher.stack_service.name=$${stack_name}/$${service_name}"
   backend:
-    image: registry.containers.ovh.net/vidomia/ezt-cms:0.2.5-23-g2886629
+    image: registry.containers.ovh.net/vidomia/ezt-cms:0.2.5-24-gf98af38
     command: sh /run.sh
     volumes:
       - ${VOLUME_PREFIX}/cms/backend/db/:/app/db

@@ -1,6 +1,6 @@
 .catalog:
   name:  easytop
-  version: 0.2.5-23-g2886629
+  version: 0.2.5-24-gf98af38
   description: easytop
   questions:
     - variable: DOMAIN_NAME
