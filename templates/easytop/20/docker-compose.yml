@@ -3,7 +3,7 @@ services:
   shopping:
     image: registry.containers.ovh.net/vidomia/ezt-merchant-rest
     volumes:
-      - ${VOLUME_PREFIX}/googleshopping/private:/root/shopping-samples/content/
+      - ${VOLUME_PREFIX}/googleshopping:/app
     command: sh /run.sh
     labels:
       - "io.rancher.scheduler.affinity:container_label_soft: io.rancher.stack_service.name=$${stack_name}/$${service_name}"
@@ -15,8 +15,6 @@ services:
       - ${VOLUME_PREFIX}/nginx/conf/app.conf:/etc/nginx/app.conf
       - ${VOLUME_PREFIX}/nginx/logs/:/var/log/nginx/
       - ${VOLUME_PREFIX}/cms/backend:/app
-      - ${VOLUME_PREFIX}/cms/backend/db/:/app/db
-      - ${VOLUME_PREFIX}/cms/backend/media/:/app/media/
     environment:
       - MY_DOMAIN_NAME=${DOMAIN_NAME}
       - GOOGLE_UA=${GOOGLE_UA}
@@ -40,8 +38,7 @@ services:
     image: registry.containers.ovh.net/vidomia/ezt-cms
     command: sh /run.sh
     volumes:
-      - ${VOLUME_PREFIX}/cms/backend/db/:/app/db
-      - ${VOLUME_PREFIX}/cms/backend/media/:/app/media/
+      - ${VOLUME_PREFIX}/cms/backend:/app
     depends_on:
       - shopping
       - redis
