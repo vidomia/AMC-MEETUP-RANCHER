@@ -8,11 +8,9 @@ services:
     labels:
       - "io.rancher.scheduler.affinity:container_label_soft: io.rancher.stack_service.name=$${stack_name}/$${service_name}"
   front:
-    image: nginx:alpine
+    image: registry.containers.ovh.net/vidomia/ezt-lb:0.2.5-23-g2886629
     command: sh /run.sh
     volumes:
-      - ${VOLUME_PREFIX}/nginx/run.sh:/run.sh
-      - ${VOLUME_PREFIX}/nginx/conf/app.conf:/etc/nginx/app.conf
       - ${VOLUME_PREFIX}/nginx/logs/:/var/log/nginx/
       - ${VOLUME_PREFIX}/cms/backend/db/:/app/vendor
       - ${VOLUME_PREFIX}/cms/backend/db/:/app/db
