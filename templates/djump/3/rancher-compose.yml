@@ -1,12 +1,12 @@
 .catalog:
-  name:  encrerie
-  version: 6
-  description: Wagtail vidomia encrerie
-  encrerie-backend:
-    retain_ip: true
+  name:  djump
+version: 1
+  description: Djump
+  djump:
+    retain_ip: false
     scale: 1
     start_on_create: true
-  encrerie-front:
+  djumpdb:
     retain-ip: false
     scale: 1
     start_on_create: true

@@ -1,6 +1,6 @@
 .catalog:
   name:  djump
-version: 1
+version: 6
   description: Djump
   djump:
     retain_ip: false
