@@ -1,7 +1,7 @@
 name: kong
 description: |
                         Stack kong
-version: 0.0.1
+version: 2
 category: api
 maintainer: julien@vidomia.biz<julien BIJOUX>
 license: BSD

@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+    tyk-dashboard:
+        image: tykio/tyk-dashboard:latest
+        ports:
+            - "3000:3000"   
+            - "5000:5000"
+        links:
+            - tyk-redis:redis
+            - tyk-mongo:mongo
+    tyk-gateway:
+        image: tykio/tyk-gateway:latest
+        environment: 
+            - TYK_GW_COPROCESSOPTIONS_ENABLECOPROCESS=false
+        ports:
+            - "8181:8181"
+        links:
+            - tyk-redis:redis
+    tyk-pump:
+        image: tykio/tyk-pump-docker-pub:latest
+        links:
+            - tyk-redis:redis
+            - tyk-mongo:mongo
+            - tyk-gateway
+    tyk-redis:
+        image: redis
+        ports:
+            - "6379:6379"
+    tyk-mongo:
+        image: mongo:3.2
+        command: ["mongod", "--smallfiles"]
+        ports:
+            - "27017:27017"

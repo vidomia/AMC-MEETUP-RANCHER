@@ -1,5 +1,7 @@
-version: '2'
-services:
+.catalog:
+  name:  kong
+  version: 2
+  description:  kong
   kong-dashboard:
     scale: 1
     start_on_create: true
