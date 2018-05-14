@@ -1,7 +1,0 @@
-name: Registry vidomia
-description: |
-        Configured NFS Registry
-version: 0
-category: nfs
-maintainer: julien@vidomia.biz<julien BIJOUX>
-license: BSD
