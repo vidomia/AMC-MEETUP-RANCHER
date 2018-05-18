@@ -1,0 +1,54 @@
+version: '3'
+services:
+  author:
+    image: registry.containers.ovh.net/vidomia/amc-aem
+    command: '/opt/cq/crx-quickstart/bin/quickstart -r author -p 4502' 
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 50s
+        max_attempts: 3
+        window: 1420s
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 500M
+        reservations:
+          cpus: '0.15'
+          memory: 200M
+    ports:
+        - "4502:4502"
+    restart: unless-stopped
+    volumes:
+        - ./license.properties:/opt/aem/license.properties:ro
+    links: 
+      - publish
+  publish:
+    image: registry.containers.ovh.net/vidomia/amc-aem
+    command: '/opt/cq/crx-quickstart/bin/quickstart -r publish -p 4503'
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 500M
+        reservations:
+          cpus: '0.15'
+          memory: 200M
+    ports:
+      - "4503:4503"
+    restart: unless-stopped
+    volumes:
+      - ./license.properties:/opt/aem/license.properties:ro
+  dispatcher:
+    build: ./dispatcher/
+    ports:
+      - "80:80"
+    links: 
+      - publish
+#  labels:
+#    - traefik.port	
+#80
+#User	traefik.frontend.rule	
+#Host:www.lencrerie.fr
+#	traefik.enable	
+#true
